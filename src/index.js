@@ -24,9 +24,8 @@ function changeImg() {
   let index = 0;
 
   const nextImg = () => {
-    console.log("before increment");
     index = (index + 1) % images.length;
-    console.log("after increment");
+
     return index;
   };
 
@@ -38,6 +37,9 @@ function changeImg() {
   return { nextImg, prevImg };
 }
 const index = changeImg();
+
+// Initialize the image carousel
+image.setAttribute(`src`, images[0]);
 
 // handle the next click and change image
 btnNext.addEventListener(`click`, () => {
