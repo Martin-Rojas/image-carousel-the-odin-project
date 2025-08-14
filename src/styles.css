@@ -44,3 +44,7 @@ img {
 .navigation-dots i {
   font-size: 1.3rem;
 }
+
+.navigation-dots-color {
+  color: red;
+}

@@ -3,6 +3,7 @@ import "./styles.css";
 const btnPrev = document.getElementById(`prev`);
 const image = document.getElementById(`img`);
 const btnNext = document.getElementById(`next`);
+const navigationDots = document.getElementsByClassName(`fa-circle`);
 
 const images = [
   "./images/img01.webp",
@@ -38,15 +39,26 @@ function changeImg() {
 }
 const index = changeImg();
 
-// Initialize the image carousel
+// Initialize the image carousel and dot navegation
 image.setAttribute(`src`, images[0]);
+navigationDots[0].classList.add(`navigation-dots-color`);
 
 // handle the next click and change image
 btnNext.addEventListener(`click`, () => {
-  image.setAttribute(`src`, images[index.nextImg()]);
+  let currentIndex = index.nextImg();
+  let oldIndex = (currentIndex - 1 + images.length) % images.length;
+  image.setAttribute(`src`, images[currentIndex]);
+
+  navigationDots[currentIndex].classList.add(`navigation-dots-color`);
+  navigationDots[oldIndex].classList.remove(`navigation-dots-color`);
 });
 
 // Handle the prev btn and change image
 btnPrev.addEventListener(`click`, () => {
+  let currentIndexPrev = index.prevImg();
+  let oldIndex = index.nextImg();
+
   image.setAttribute(`src`, images[index.prevImg()]);
+  navigationDots[currentIndexPrev].classList.add(`navigation-dots-color`);
+  navigationDots[oldIndex].classList.remove(`navigation-dots-color`);
 });
