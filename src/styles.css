@@ -17,9 +17,9 @@ i {
 img {
   width: 40%;
   height: 85%;
+  border-radius: 50%;
 }
 .container {
-  /* border: 2px red solid; */
   width: 80%;
   height: 600px;
   display: flex;
@@ -28,7 +28,6 @@ img {
   flex-direction: column;
 }
 .carousel-container {
-  /* border: 2px green solid; */
   width: 80%;
   height: 600px;
   display: flex;
@@ -37,14 +36,21 @@ img {
 }
 
 .navigation-dots {
-  /* border: 2px darkblue solid; */
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 5px;
+  padding: 5px;
 }
 
-.navigation-dots i {
-  font-size: 1.3rem;
+.fa-circle {
+  font-size: 1rem;
+  color: #ccc;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .navigation-dots-color {
-  color: red;
+  color: #df3232;
+  transform: scale(1.2);
 }
