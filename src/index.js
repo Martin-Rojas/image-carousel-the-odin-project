@@ -4,6 +4,7 @@ const btnPrev = document.getElementById(`prev`);
 const image = document.getElementById(`img`);
 const btnNext = document.getElementById(`next`);
 const navigationDots = document.getElementsByClassName(`fa-circle`);
+const navigationDotsContainer = document.getElementById(`navigation-dots`);
 
 const images = [
   "./images/img01.webp",
@@ -35,7 +36,15 @@ function changeImg() {
     return index;
   };
 
-  return { nextImg, prevImg };
+  const setIndex = (newIndex) => {
+    index = newIndex;
+
+    return index;
+  };
+
+  const getIndex = () => index;
+
+  return { nextImg, prevImg, setIndex, getIndex };
 }
 const index = changeImg();
 
@@ -45,8 +54,9 @@ navigationDots[0].classList.add(`navigation-dots-color`);
 
 // handle the next click and change image
 btnNext.addEventListener(`click`, () => {
+  let oldIndex = index.getIndex();
   let currentIndex = index.nextImg();
-  let oldIndex = (currentIndex - 1 + images.length) % images.length;
+
   image.setAttribute(`src`, images[currentIndex]);
 
   navigationDots[currentIndex].classList.add(`navigation-dots-color`);
@@ -55,10 +65,23 @@ btnNext.addEventListener(`click`, () => {
 
 // Handle the prev btn and change image
 btnPrev.addEventListener(`click`, () => {
-  let currentIndexPrev = index.prevImg();
-  let oldIndex = index.nextImg();
+  let oldIndex = index.getIndex();
+  let currentIndex = index.prevImg();
 
-  image.setAttribute(`src`, images[index.prevImg()]);
-  navigationDots[currentIndexPrev].classList.add(`navigation-dots-color`);
+  image.setAttribute(`src`, images[currentIndex]);
+  navigationDots[currentIndex].classList.add(`navigation-dots-color`);
+  navigationDots[oldIndex].classList.remove(`navigation-dots-color`);
+});
+
+// Link the navegations dots with the images
+navigationDotsContainer.addEventListener(`click`, (event) => {
+  let oldIndex = index.getIndex();
+  let clickedIndex = event.target.getAttribute("value");
+
+  index.setIndex(clickedIndex);
+
+  image.setAttribute(`src`, images[clickedIndex]);
+
+  navigationDots[clickedIndex].classList.add(`navigation-dots-color`);
   navigationDots[oldIndex].classList.remove(`navigation-dots-color`);
 });
