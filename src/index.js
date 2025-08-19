@@ -75,26 +75,13 @@ btnPrev.addEventListener(`click`, () => {
 
 // Link the navegations dots with the images
 navigationDotsContainer.addEventListener(`click`, (event) => {
-  let oldIndex = index.getIndex();
-  let clickedIndex = event.target.getAttribute("value");
-
-  index.setIndex(clickedIndex);
-
-  image.setAttribute(`src`, images[clickedIndex]);
-
-  navigationDots[clickedIndex].classList.add(`navigation-dots-color`);
-  navigationDots[oldIndex].classList.remove(`navigation-dots-color`);
+  changeIndexes(
+    index.getIndex(),
+    index.setIndex(event.target.getAttribute("value"))
+  );
 });
 
 // Change imgs avery 5 sec
 setInterval(() => {
-  let oldIndex = index.getIndex();
-  let nextIndex = index.nextImg();
-
-  index.setIndex(nextIndex);
-
-  image.setAttribute(`src`, images[nextIndex]);
-
-  navigationDots[nextIndex].classList.add(`navigation-dots-color`);
-  navigationDots[oldIndex].classList.remove(`navigation-dots-color`);
+  changeIndexes(index.getIndex(), index.setIndex(index.nextImg()));
 }, 5000);
