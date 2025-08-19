@@ -85,3 +85,16 @@ navigationDotsContainer.addEventListener(`click`, (event) => {
   navigationDots[clickedIndex].classList.add(`navigation-dots-color`);
   navigationDots[oldIndex].classList.remove(`navigation-dots-color`);
 });
+
+// Change imgs avery 5 sec
+setInterval(() => {
+  let oldIndex = index.getIndex();
+  let clickedIndex = index.nextImg();
+
+  index.setIndex(clickedIndex);
+
+  image.setAttribute(`src`, images[clickedIndex]);
+
+  navigationDots[clickedIndex].classList.add(`navigation-dots-color`);
+  navigationDots[oldIndex].classList.remove(`navigation-dots-color`);
+}, 5000);
