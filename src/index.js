@@ -82,6 +82,6 @@ navigationDotsContainer.addEventListener(`click`, (event) => {
 });
 
 // Change imgs avery 5 sec
-setInterval(() => {
-  changeIndexes(index.getIndex(), index.setIndex(index.nextImg()));
-}, 5000);
+// setInterval(() => {
+//   changeIndexes(index.getIndex(), index.setIndex(index.nextImg()));
+// }, 5000);
